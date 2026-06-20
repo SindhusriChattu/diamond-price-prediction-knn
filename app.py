@@ -40,8 +40,12 @@ if st.button("Predict Price"):
     })
 
     # Apply preprocessing
-    processed_data = preprocessor.transform(input_data)
+    st.write("Input Columns:", input_data.columns.tolist())
 
+    try:
+        processed_data = preprocessor.transform(input_data)
+    except Exception as e:
+        st.error(str(e))
     # Predict
     prediction = model.predict(processed_data)[0]
 
